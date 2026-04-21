@@ -1,0 +1,19 @@
+{
+  "QA": {
+    "url" : "https://www.selenium.dev/",
+    "browser" : "chrome",
+    "headless" : true
+  },
+
+  "DEV": {
+    "url" : "https://www.saucedemo.com/",
+    "browser" : "firefox",
+    "headless" : false
+  },
+
+  "PROD": {
+    "url" : "https://www.selenium.dev/",
+    "browser" : "chrome",
+    "headless" : true
+  }
+ }
