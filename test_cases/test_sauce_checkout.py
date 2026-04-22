@@ -1,7 +1,5 @@
 import pickle
-import time
 from pathlib import Path
-
 import pytest
 from selenium.webdriver.common.by import By
 from utilities.csv_reader import read_csv
@@ -17,7 +15,7 @@ def test_sauce_dashboard(driver, row):
     driver_instance.get("https://www.saucedemo.com/")   # open the site first
 
     # Load cookies from a file
-    with open("../cookies.pkl", "rb") as f:
+    with open(BASE_DIR / "cookies.pkl", "rb") as f:
         cookies = pickle.load(f)
 
     # Add cookies to the browser
@@ -35,6 +33,5 @@ def test_sauce_dashboard(driver, row):
     driver_instance.find_element(By.ID, "postal-code").send_keys(postal_code)
     driver_instance.find_element(By.NAME, "continue").click()
     driver_instance.find_element(By.ID, "finish").click()
-    time.sleep(2)
 
 

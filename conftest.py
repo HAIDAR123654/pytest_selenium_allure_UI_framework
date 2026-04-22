@@ -1,6 +1,8 @@
 import pickle
 import allure
 import pytest
+from selenium.webdriver import edge
+
 from base_pages.login_page import LoginPage
 from utilities.read_config_file import read_config
 from utilities.driver_factory import DriverFactory
@@ -10,8 +12,7 @@ import logging
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome")
     parser.addoption("--headless", action="store", default="false")
-    parser.addoption("--env", action="store", default="QA")
-
+    parser.addoption("--env", action="store", default="DEV")
 
 @pytest.fixture(scope="session", autouse=True)
 def load_config(request):
@@ -22,13 +23,15 @@ def load_config(request):
 
 @pytest.fixture(scope="function")
 def driver(load_config):
-    area = load_config["browser"]
+    browser = load_config["browser"]
     headless = load_config["headless"]
-    driver = DriverFactory.get_driver(area, headless)
+    driver = DriverFactory.get_driver(browser, headless)
     driver.maximize_window()
     driver.implicitly_wait(5)
     yield driver, load_config["url"]
     driver.quit()
+
+BASE_DIR = Path(__file__).resolve().parent
 
 @pytest.fixture(scope="session", autouse=True)
 def login(load_config):
@@ -36,9 +39,9 @@ def login(load_config):
     driver_instance.get(load_config["url"])
     login_page = LoginPage(driver_instance)
     login_page.login("standard_user", "secret_sauce")
-    with open("./cookies.pkl", "wb") as f:
+    with open(BASE_DIR / "cookies.pkl", "wb") as f:
         pickle.dump(driver_instance.get_cookies(), f)
-    with open("./cookies.pkl", "rb") as f:
+    with open(BASE_DIR / "cookies.pkl", "rb") as f:
         cookies = pickle.load(f)
         print(cookies)
     driver_instance.quit()

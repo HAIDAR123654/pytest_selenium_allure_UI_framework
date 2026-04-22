@@ -1,16 +1,19 @@
 import pickle
+from pathlib import Path
 
 import pytest
 from base_pages.products_page import ProductsPage
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 @pytest.mark.order(2)
-@pytest.mark.regression
+@pytest.mark.smoke
 def test_valid_login(driver, login):
     driver_instance, url = driver
     driver_instance.get("https://www.saucedemo.com/")
     product_page = ProductsPage(driver_instance)
     # Load cookies from a file
-    with open("cookies.pkl", "rb") as f:
+    with open(BASE_DIR / "cookies.pkl", "rb") as f:
         cookies = pickle.load(f)
     # Add cookies to the browser
     for cookie in cookies:

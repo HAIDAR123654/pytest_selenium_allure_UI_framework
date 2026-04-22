@@ -3,7 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
-@pytest.mark.regression
+@pytest.mark.sanity
 @pytest.mark.dependency(name="selenium_test_1")
 def test_selenium(driver, class_fixture, module_fixture, package_fixture):
     driver_instance, url = driver
@@ -12,7 +12,7 @@ def test_selenium(driver, class_fixture, module_fixture, package_fixture):
     driver_instance.find_element(By.XPATH, "//div[@class='dropdown-menu show']/a[1]").click()
     assert "About Selenium" in driver_instance.title
 
-@pytest.mark.regression
+@pytest.mark.sanity
 @pytest.mark.dependency(name="selenium_test_2", depends=["selenium_test_1"])
 def test_selenium_second(driver, class_fixture, module_fixture, package_fixture):
     driver_instance, url = driver

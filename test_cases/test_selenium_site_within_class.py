@@ -3,7 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
-@pytest.mark.smoke
+@pytest.mark.regression
 class TestClass:
     def test_selenium(self, driver, class_fixture, module_fixture, package_fixture):
         driver_instance, url = driver
