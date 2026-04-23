@@ -1,0 +1,5 @@
+[32mINFO    [0m test_cases.test_google_page:test_google_page.py:13 Going to https://www.google.com
+[32mINFO    [0m test_cases.test_google_page:test_google_page.py:17 Searching for  locator
+[32mINFO    [0m test_cases.test_google_page:test_google_page.py:20 Entering 'Enter' button in searchbox
+[32mINFO    [0m test_cases.test_google_page:test_google_page.py:23 Entering 'python' button in searchbox
+[32mINFO    [0m test_cases.test_google_page:test_google_page.py:26 test got passed
