@@ -1,0 +1,1 @@
+[32mINFO    [0m pytest_dependency:pytest_dependency.py:100 skip test_selenium_second because it depends on selenium_test_1

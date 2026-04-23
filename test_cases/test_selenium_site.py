@@ -9,7 +9,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 def test_selenium(driver, class_fixture, module_fixture, package_fixture):
     driver_instance, url = driver
     driver_instance.get("https://www.selenium.dev/")
-    driver_instance.find_element(By.ID, "navbarDropdown").click()
+    element = WebDriverWait(driver_instance, 10).until(
+        EC.element_to_be_clickable((By.ID, "navbarDropdown"))
+    )
+    element.click()
     driver_instance.find_element(By.XPATH, "//div[@class='dropdown-menu show']/a[1]").click()
     assert "About Selenium" in driver_instance.title
 
@@ -19,7 +22,10 @@ def test_selenium(driver, class_fixture, module_fixture, package_fixture):
 def test_selenium_second(driver, class_fixture, module_fixture, package_fixture):
     driver_instance, url = driver
     driver_instance.get("https://www.selenium.dev/")
-    driver_instance.find_element(By.ID, "navbarDropdown").click()
+    element = WebDriverWait(driver_instance, 10).until(
+        EC.element_to_be_clickable((By.ID, "navbarDropdown"))
+    )
+    element.click()
     (WebDriverWait(driver_instance, 10).
      until(EC.element_to_be_clickable((By.XPATH, "//div[@class='dropdown-menu show']/a[1]"))).click())
     el = driver_instance.find_element(By.XPATH, "//a[contains(text(), 'Learn more')]")

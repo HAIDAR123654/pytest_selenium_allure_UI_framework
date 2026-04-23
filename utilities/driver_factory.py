@@ -11,6 +11,7 @@ class DriverFactory:
             options = ChromeOptions()
             if headless:
                 options.add_argument("--headless=new")
+                options.add_argument("--window-size=1920,1080")
             options.add_argument("--start-maximized")
             return webdriver.Chrome(options=options)
 
@@ -18,12 +19,14 @@ class DriverFactory:
             options = FirefoxOptions()
             if headless:
                 options.add_argument("--headless")
+                options.add_argument("--window-size=1920,1080")
             return webdriver.Firefox(options=options)
 
         elif browser == "edge":
             options = EdgeOptions()
             if headless:
                 options.add_argument("--headless=new")
+                options.add_argument("--window-size=1920,1080")
             options.add_argument("--start-maximized")
             return webdriver.Edge(options=options)
 
